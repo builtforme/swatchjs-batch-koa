@@ -1,0 +1,16 @@
+{
+    "extends": "airbnb-base",
+    "plugins": [
+        "babel",
+        "import"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "sourceType": "module",
+        "ecmaFeatures": {}
+    },
+    "rules": {
+        "no-param-reassign": ["error", { "props": false }],
+        "no-throw-literal": "off"
+    }
+}
