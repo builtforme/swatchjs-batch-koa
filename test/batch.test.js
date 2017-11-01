@@ -1,6 +1,24 @@
+const bunyan = require('bunyan');
 const expect = require('chai').expect;
 const swatch = require('swatchjs');
 const batch = require('../lib/batch');
+
+const logger = bunyan.createLogger({
+  name: 'swatch-batch-koa-test',
+  streams: [{ path: '/dev/null' }],
+});
+
+const onException = (errorObj) => {
+  throw errorObj;
+};
+
+const swatchCtx = {
+  logger,
+  request: {
+    onException,
+  },
+};
+
 
 describe('batch', () => {
   it('should return a handler function', () => {
@@ -49,7 +67,7 @@ describe('batch handler', () => {
       },
     ];
 
-    expect(handler(ops)).to.deep.equal(expected);
+    expect(handler.call(swatchCtx, ops)).to.deep.equal(expected);
   });
 
   it('should return an error if a method does not exist', () => {
@@ -74,10 +92,11 @@ describe('batch handler', () => {
       {
         ok: false,
         error: 'invalid_method',
+        details: undefined,
       },
     ];
 
-    expect(handler(ops)).to.deep.equal(expected);
+    expect(handler.call(swatchCtx, ops)).to.deep.equal(expected);
   });
 
   it('should return an error if the method throws', () => {
@@ -102,10 +121,11 @@ describe('batch handler', () => {
       {
         ok: false,
         error: 'some_error',
+        details: undefined,
       },
     ];
 
-    expect(handler(ops)).to.deep.equal(expected);
+    expect(handler.call(swatchCtx, ops)).to.deep.equal(expected);
   });
 
   it('should throw if ops is invalid', () => {

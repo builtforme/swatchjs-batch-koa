@@ -39,6 +39,7 @@
     "babel-preset-es3": "^1.0.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.24.1",
+    "bunyan": "^1.8.10",
     "chai": "^4.1.1",
     "chai-as-promised": "^7.1.1",
     "codecov": "^2.3.0",

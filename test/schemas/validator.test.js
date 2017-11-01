@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 
-const opsSchema = require('../lib/schemas/ops');
-const schemaValidator = require('../lib/schemas/validator');
+const opsSchema = require('../../lib/schemas/ops');
+const schemaValidator = require('../../lib/schemas/validator');
 
 const validate = schemaValidator(opsSchema);
 
