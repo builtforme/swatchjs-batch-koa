@@ -39,7 +39,7 @@ describe('batch handler', () => {
   });
   const handler = batch(model);
 
-  it('should execute all requested methods', () => {
+  it('should execute all requested methods', (done) => {
     const ops = [
       {
         method: 'add',
@@ -67,10 +67,13 @@ describe('batch handler', () => {
       },
     ];
 
-    expect(handler.call(swatchCtx, ops)).to.deep.equal(expected);
+    handler.call(swatchCtx, ops).then((result) => {
+      expect(result).to.deep.equal(expected);
+      done();
+    }).catch(done);
   });
 
-  it('should return an error if a method does not exist', () => {
+  it('should return an error if a method does not exist', (done) => {
     const ops = [
       {
         method: 'add',
@@ -96,10 +99,13 @@ describe('batch handler', () => {
       },
     ];
 
-    expect(handler.call(swatchCtx, ops)).to.deep.equal(expected);
+    handler.call(swatchCtx, ops).then((result) => {
+      expect(result).to.deep.equal(expected);
+      done();
+    }).catch(done);
   });
 
-  it('should return an error if the method throws', () => {
+  it('should return an error if the method throws', (done) => {
     const ops = [
       {
         method: 'add',
@@ -125,10 +131,18 @@ describe('batch handler', () => {
       },
     ];
 
-    expect(handler.call(swatchCtx, ops)).to.deep.equal(expected);
+    handler.call(swatchCtx, ops).then((result) => {
+      expect(result).to.deep.equal(expected);
+      done();
+    }).catch(done);
   });
 
-  it('should throw if ops is invalid', () => {
-    expect(() => handler(10)).to.throw('invalid_request');
+  it('should throw if ops is invalid', (done) => {
+    handler(10).then(() => {
+      done(new Error('invalid_ops_should_have_failed'));
+    }).catch((error) => {
+      expect(error.message).to.equal('invalid_request');
+      done();
+    });
   });
 });
