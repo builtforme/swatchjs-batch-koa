@@ -57,8 +57,8 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.25.0",
-    "bunyan": "^1.8.10",
-    "joi": "^10.6.0"
+    "joi": "^10.6.0",
+    "swatchjs-koa-middleware": "file:../swatchjs-koa-middleware"
   },
   "files": [
     "dist"
