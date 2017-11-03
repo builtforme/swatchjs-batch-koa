@@ -2,7 +2,7 @@
   "name": "swatchjs-batch-koa",
   "version": "0.0.1",
   "description": "Batch method for swatchjs-koa APIs",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "nyc mocha 'test/**/*.test.js'",
     "test:debug": "mocha --debug-brk",
