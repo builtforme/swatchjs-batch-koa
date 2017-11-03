@@ -36,6 +36,14 @@ describe('batch handler', () => {
     add: (a, b) => a + b,
     sub: (a, b) => a - b,
     bad: () => { throw new Error('some_error'); },
+    mid: {
+      handler: () => { throw new Error('handler_exception'); },
+      metadata: {
+        middleware: [
+          () => { throw new Error('middleware_exception'); },
+        ],
+      },
+    },
   });
   const handler = batch(model);
 
@@ -127,6 +135,38 @@ describe('batch handler', () => {
       {
         ok: false,
         error: 'some_error',
+        details: undefined,
+      },
+    ];
+
+    handler.call(swatchCtx, ops).then((result) => {
+      expect(result).to.deep.equal(expected);
+      done();
+    }).catch(done);
+  });
+
+  it('should run middleware before each method', (done) => {
+    const ops = [
+      {
+        method: 'add',
+        args: {
+          a: 10,
+          b: 20,
+        },
+      },
+      {
+        method: 'mid',
+        args: {},
+      },
+    ];
+    const expected = [
+      {
+        ok: true,
+        result: 30,
+      },
+      {
+        ok: false,
+        error: 'middleware_exception',
         details: undefined,
       },
     ];
