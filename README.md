@@ -1,5 +1,9 @@
 # swatchjs-batch-koa
 
+[![CircleCI](https://circleci.com/gh/builtforme/swatchjs-batch-koa.svg?style=svg)](https://circleci.com/gh/builtforme/swatchjs-batch-koa) |
+[![codecov](https://codecov.io/gh/builtforme/swatchjs-batch-koa/branch/master/graph/badge.svg)](https://codecov.io/gh/builtforme/swatchjs-batch-koa) | [![Coverage Status](https://coveralls.io/repos/github/builtforme/swatchjs-batch-koa/badge.svg?branch=master)](https://coveralls.io/github/builtforme/swatchjs-batch-koa?branch=master) | [![Known Vulnerabilities](https://snyk.io/test/github/builtforme/swatchjs-batch-koa/badge.svg)](https://snyk.io/test/github/builtforme/swatchjs-batch-koa)
+
+
 An extension for [swatchjs]() to provide a method to invoke multiple API methods
 at once in KOA server context.
 
