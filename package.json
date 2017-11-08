@@ -10,7 +10,7 @@
     "build": "babel . -d dist --ignore coverage,dist,node_modules",
     "clean": "rm -rf dist/",
     "coveralls": "nyc report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js",
-    "codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "codecov": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
