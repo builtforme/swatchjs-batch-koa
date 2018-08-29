@@ -1,6 +1,7 @@
+const { expect } = require('chai');
 const bunyan = require('bunyan');
-const expect = require('chai').expect;
 const swatch = require('swatchjs');
+
 const batch = require('../lib/batch');
 
 const logger = bunyan.createLogger({
