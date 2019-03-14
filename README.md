@@ -62,7 +62,7 @@ The `batchKoa` method returns a handler that takes the following parameters:
 |`ops[idx].args`    | Yes       | An object with the arguments to pass to the method.
 
 The methods are not guaranteed to be executed in any particular order, and they
-succeed or fail independently.
+succeed or fail independently. They are however guaranteed to be returned in the order in which they are received.
 
 The response will be an array of responses, where each response has the
 following properties:
